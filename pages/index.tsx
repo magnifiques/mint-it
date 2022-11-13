@@ -27,8 +27,8 @@ const Home = ({ collection }: Props) => {
       <div className="flex flex-row items-center justify-center py-4">
         <p className="text-white rounded-lg lg:text-xl border-2 bg-red-600 border-black p-4">
           In order to claim an NFT, you're gonna need Mumbai (POLYGON - Testnet)
-          as the network for transaction. That means you have to manually set
-          MUMBAI (POLYGON) as the network in your Metamask Account. Otherwise
+          as the network for transactions. That means you have to manually set
+          MUMBAI (POLYGON) as the network in your Metamask Account. Otherwise,
           you won't be able to claim your NFTs! Here's how you can set it Up!
           -&gt;{" "}
           <a
@@ -55,7 +55,7 @@ const Home = ({ collection }: Props) => {
                 />{" "}
                 <div className="p-4">
                   <h2 className="text-3xl">{collection.title}</h2>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <p className="mt-2 text-base text-gray-500">
                     {collection.description}
                   </p>
                 </div>
