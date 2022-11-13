@@ -84,11 +84,22 @@ const NFTDropPage = ({ collection }: Props) => {
             />
           </div>
 
-          <div className="space-y-2 p-5 text-center">
+          <div className="space-y-3 p-5 text-center">
             <h1 className="text-4xl font-bold text-white">Mint IT!</h1>
             <h2 className="text-xl text-gray-300">
               Grab some fresh NFTs and mint em for completely free!
             </h2>
+
+            <h3 className="text-xl text-white py-4">
+              You can checkout your claimed NFTs on{" "}
+              <a
+                target="__blank"
+                href="https://testnets.opensea.io/"
+                className="text-yellow-500 hover:text-black"
+              >
+                Opensea testnet!
+              </a>{" "}
+            </h3>
           </div>
         </div>
       </div>
@@ -108,8 +119,8 @@ const NFTDropPage = ({ collection }: Props) => {
           </Link>
 
           <button
-            className="rounded-full bg-rose-400 text-xs 
-          font-bold text-white lg:px-5 lg:py-3 lg:text-base"
+            className="rounded-2xl bg-rose-400 text-sm px-3 py-2
+          font-bold text-white lg:rounded-full lg:px-5 lg:py-3 lg:text-base"
             onClick={() => {
               address ? disconnect() : connectWithMetaMask();
             }}
