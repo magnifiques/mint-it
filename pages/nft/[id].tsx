@@ -193,7 +193,7 @@ const NFTDropPage = ({ collection }: Props) => {
           ) : !address ? (
             <>Sign In To Mint</>
           ) : (
-            <span className="font-bold">Mint NFT ({price} ETH)</span>
+            <span className="font-bold">Mint NFT ({price} MATIC)</span>
           )}
         </button>
       </div>
