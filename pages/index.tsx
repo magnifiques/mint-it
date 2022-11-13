@@ -24,6 +24,22 @@ const Home = ({ collection }: Props) => {
         Market Place
       </h1>
 
+      <div className="flex flex-row items-center justify-center py-4">
+        <p className="text-white rounded-lg lg:text-xl border-2 bg-red-600 border-black p-4">
+          In order to claim an NFT, you're gonna need Mumbai (POLYGON - Testnet)
+          as the network for transaction. That means you have to manually set
+          MUMBAI (POLYGON) as the network in your Metamask Account. Otherwise
+          you won't be able to claim your NFTs! Here's how you can set it Up!
+          -&gt;{" "}
+          <a
+            className="underline text-black hover:text-white"
+            href="https://docs.unstoppabledomains.com/polygon/add-polygon-to-metamask/"
+          >
+            Add Polygon Network to MetaMask Wallet
+          </a>
+        </p>
+      </div>
+
       <main className="bg-gray-200 p-10 shadow-xl shadow-rose-200">
         <div className="grid space-x-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {collection.map((collection) => (
@@ -37,7 +53,7 @@ const Home = ({ collection }: Props) => {
                   src={urlFor(collection.mainImage).url()}
                   alt=""
                 />{" "}
-                <div className="p-2">
+                <div className="p-4">
                   <h2 className="text-3xl">{collection.title}</h2>
                   <p className="mt-2 text-sm text-gray-500">
                     {collection.description}
