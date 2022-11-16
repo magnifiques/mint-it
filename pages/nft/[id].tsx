@@ -14,18 +14,24 @@ import { sanityClient, urlFor } from "../../sanity";
 import { Collection } from "../../typing";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 interface Props {
   collection: Collection;
 }
 
 const NFTDropPage = ({ collection }: Props) => {
+  const router = useRouter();
   const connectWithMetaMask = useMetamask();
   const address = useAddress();
   const disconnect = useDisconnect();
 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+
+  const reDirect = () => {
+    router.push("/");
+  };
 
   const [claimedSupply, setClaimedSupply] = useState<number | undefined>();
   const [totalSupply, setTotalSupply] = useState<number | undefined>();
@@ -60,13 +66,50 @@ const NFTDropPage = ({ collection }: Props) => {
   }, [nftDrops, claimedNFTs, totalNFTs, claimConditions]);
 
   const claimTheNFT = () => {
-    toast("working", {
+    const notification = toast.loading("Minting, Please Wait...", {
       style: {
         background: "white",
-        color: "blue",
+        color: "green",
+        fontWeight: "bolder",
+        fontSize: "17px",
+        padding: "20px",
       },
     });
-    claimNFT({ to: address, quantity: 1 });
+    claimNFT(
+      { to: address, quantity: 1 },
+      {
+        onSuccess() {
+          toast.dismiss(notification);
+          toast(
+            "You've successfully minted the NFT!, redirecting to Home Page..",
+            {
+              duration: 5000,
+              style: {
+                background: "green",
+                color: "white",
+                fontWeight: "bolder",
+                fontSize: "17px",
+                padding: "20px",
+              },
+            }
+          );
+          setTimeout(reDirect, 6000);
+        },
+        onError() {
+          toast.dismiss(notification);
+          toast("Woah! something went wrong!", {
+            duration: 5000,
+            style: {
+              background: "red",
+              color: "white",
+              fontWeight: "bolder",
+              fontSize: "15px",
+              padding: "20px",
+            },
+          });
+        },
+      }
+    );
   };
 
   return (

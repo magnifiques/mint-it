@@ -32,6 +32,7 @@ const Home = ({ collection }: Props) => {
           you won't be able to claim your NFTs! Here's how you can set it Up!
           -&gt;{" "}
           <a
+            target="_blank"
             className="underline text-black hover:text-white"
             href="https://docs.unstoppabledomains.com/polygon/add-polygon-to-metamask/"
           >
