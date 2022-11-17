@@ -8,6 +8,9 @@ import {
   useClaimConditions,
   useClaimNFT,
   useTotalCount,
+  ChainId,
+  useNetwork,
+  useNetworkMismatch,
 } from "@thirdweb-dev/react";
 import { GetServerSideProps } from "next";
 import { sanityClient, urlFor } from "../../sanity";
@@ -36,6 +39,10 @@ const NFTDropPage = ({ collection }: Props) => {
   const [claimedSupply, setClaimedSupply] = useState<number | undefined>();
   const [totalSupply, setTotalSupply] = useState<number | undefined>();
   const [price, setPrice] = useState<string>();
+
+  const [, switchNetwork] = useNetwork();
+
+  const mismatchedNetwork = useNetworkMismatch();
 
   const { contract: nftDrops } = useContract(collection.address);
 
@@ -66,6 +73,12 @@ const NFTDropPage = ({ collection }: Props) => {
   }, [nftDrops, claimedNFTs, totalNFTs, claimConditions]);
 
   const claimTheNFT = () => {
+    if (mismatchedNetwork) {
+      switchNetwork && switchNetwork(ChainId.Mumbai);
+      return;
+    }
+
+    setLoading(true);
     const notification = toast.loading("Minting, Please Wait...", {
       style: {
         background: "white",
@@ -93,10 +106,12 @@ const NFTDropPage = ({ collection }: Props) => {
               },
             }
           );
+          setLoading(false);
           setTimeout(reDirect, 6000);
         },
         onError() {
           toast.dismiss(notification);
+          setLoading(false);
           toast("Woah! something went wrong!", {
             duration: 5000,
             style: {

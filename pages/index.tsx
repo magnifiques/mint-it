@@ -24,7 +24,7 @@ const Home = ({ collection }: Props) => {
         Market Place
       </h1>
 
-      <div className="flex flex-row items-center justify-center py-4">
+      {/* <div className="flex flex-row items-center justify-center py-4">
         <p className="text-white rounded-lg lg:text-xl border-2 bg-red-600 border-black p-4">
           In order to claim an NFT, you're gonna need Mumbai (POLYGON - Testnet)
           as the network for transactions. That means you have to manually set
@@ -39,7 +39,7 @@ const Home = ({ collection }: Props) => {
             Add Polygon Network to MetaMask Wallet
           </a>
         </p>
-      </div>
+      </div> */}
 
       <main className="bg-gray-200 p-10 shadow-xl shadow-rose-200">
         <div className="grid space-x-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
